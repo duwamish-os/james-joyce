@@ -10,7 +10,7 @@ nohup elasticsearch-5.1.1/bin/elasticsearch &
 
 indexstorage.service
 
-```basg
+```bash
 [Unit]
 Description=indexing-store
 
@@ -41,13 +41,18 @@ wget https://artifacts.elastic.co/downloads/kibana/kibana-5.3.0-linux-x86_64.tar
 git clone https://github.com/Yelp/elastalert.git
 
 # remove python3 if exists
+# which was the case for ubuntu
+# Linux ip-172-24-41-161 4.4.0-64-generic #85-Ubuntu SMP Mon Feb 20 11:50:30 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+
 # yum uninstall python3
 # apt-get remove python3
 # python --version
 # Python 2.7.12
 
-# apt-get -y install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev
-# apt-get -y install python-setuptools
+#on debian OS
+apt-get -y install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev
+
+apt-get -y install python-setuptools
 
 #install 
 sudo python setup.py install
