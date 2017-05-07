@@ -1,0 +1,15 @@
+name: Non prod myapplication alerts
+type: frequency
+index: myapplication*
+num_events: 1
+timeframe:
+    seconds: 1
+filter:
+- query:
+   query_string:
+      query: "\"ERROR\""
+alert:
+- "slack"
+slack:
+slack_webhook_url: https://hooks.slack.com/services/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
+slack_msg_color: danger
