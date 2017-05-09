@@ -21,6 +21,8 @@ filebeat.prospectors:
   paths:
     - /var/log/myapp/myapp-pipeline.log
     #- c:\programdata\elasticsearch\logs\*
+      json.keys_under_root: true
+      json.add_error_key: true
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
@@ -82,6 +84,9 @@ output.elasticsearch:
   # Array of hosts to connect to.
   hosts: ["localhost:9200"]
   index: "myapplication-environment-%{+YYYY.MM.dd}"
+
+  template.name: filebeat
+  template.path: filebeat.template.json
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
