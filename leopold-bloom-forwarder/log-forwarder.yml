@@ -27,6 +27,8 @@ filebeat.inputs:
   paths:
     - /var/log/myapp/myapp-pipeline.log
     #- c:\programdata\elasticsearch\logs\*
+  fields:
+    type: "myapp-index"
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
@@ -52,7 +54,7 @@ filebeat.inputs:
   # for Java Stack Traces or C-Line Continuation
 
   # The regexp Pattern that has to be matched. The example pattern matches all lines starting with [
-  #multiline.pattern: ^\[
+  multiline.pattern: '^[[:space:]]+(at|\.{3})\b|^Caused by:'
 
   # Defines if the pattern set under pattern should be negated or not. Default is false.
   #multiline.negate: false
@@ -60,7 +62,7 @@ filebeat.inputs:
   # Match can be set to "after" or "before". It is used to define if lines should be append to a pattern
   # that was (not) matched before or after or as long as a pattern is not matched based on negate.
   # Note: After is the equivalent to previous and before is the equivalent to to next in Logstash
-  #multiline.match: after
+  multiline.match: after
 
 
 #============================= Filebeat modules ===============================
@@ -94,7 +96,7 @@ setup.template.settings:
 
 # Optional fields that you can specify to add additional information to the
 # output.
-#fields:
+fields:
   env: uat
 
 
@@ -148,7 +150,7 @@ setup.kibana:
 output.elasticsearch:
   # Array of hosts to connect to.
   hosts: ["https://<my_api>.us-east-1.es.amazonaws.com:443"]
-  index: "my-api-%{+YYYY.MM.dd}"
+  index: "%{[fields.type]}-%{+YYYY.MM.dd}"
   # Enabled ilm (beta) to use index lifecycle management instead daily indices.
   #ilm.enabled: false
 
