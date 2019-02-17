@@ -3,30 +3,6 @@
 
 https://www.elastic.co/guide/en/beats/filebeat/current/elasticsearch-output.html#elasticsearch-output
 
-```bash
-
-# on mac
-
-#wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-darwin-x86_64.tar.gz
-wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-linux-x86_64.tar.gz
-chmod go-w /usr/local/filebeat-5.3.0-linux-x86_64/filebeat.yml
-```
-
-```bash
-[Unit]
-Description=Log forwarder pipeline
-
-[Service]
-Type=forking
-ExecStart=/usr/local/filebeat-5.3.0-linux-x86_64/filebeat -c /usr/local/filebeat-5.3.0-linux-x86_64/log-forwarder.yml
-ExecStop=/bin/sh -c "echo 'Alerting stopped'"
-TimeoutSec=infinity
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
 ```yaml
 
 - input_type: log

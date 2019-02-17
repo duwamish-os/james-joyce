@@ -1,0 +1,13 @@
+[Unit]
+Description=Log forwarder pipeline
+
+[Service]
+Type=forking
+ExecStart=/usr/local/log-forwarder/filebeat -c /usr/local/log-forwarder/log-forwarder.yml
+ExecStop=/bin/sh -c "echo 'Alerting stopped'"
+TimeoutSec=infinity
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
