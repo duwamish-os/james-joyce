@@ -1,4 +1,4 @@
-name: Non prod myapplication alerts
+name: prod myapplication alerts
 type: frequency
 index: myapplication*
 num_events: 1
